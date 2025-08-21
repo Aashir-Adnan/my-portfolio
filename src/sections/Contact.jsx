@@ -1,17 +1,50 @@
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import { useRef, useState, useEffect } from "react";
+import { auth, provider, db } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
 
 const Contact = () => {
   const formRef = useRef(null);
+  const [user, setUser] = useState(auth.currentUser || null);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [showPopup, setShowPopup] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  // Listen to login/logout to update form fields
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        setForm((prev) => ({
+          ...prev,
+          name: currentUser.displayName || "",
+          email: currentUser.email || "",
+        }));
+      } else {
+        setForm((prev) => ({ ...prev, name: "", email: "" }));
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      setUser(result.user);
+      setForm({
+        ...form,
+        name: result.user.displayName,
+        email: result.user.email,
+      });
+      setShowLoginPrompt(false);
+    } catch (err) {
+      console.error("Login error:", err);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,22 +53,30 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); 
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
 
+    if (!form.message) return;
+
+    setLoading(true);
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      );
-
-      
-      setForm({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("EmailJS Error:", error); 
+      await addDoc(collection(db, "messages"), {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        timestamp: serverTimestamp(),
+        approved: false,
+      });
+      setForm({ ...form, message: "" });
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
+    } catch (err) {
+      console.error("Firestore error:", err);
+      alert("Failed to send message. Check Firestore rules.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -46,6 +87,7 @@ const Contact = () => {
           title="Get in Touch – Let’s Connect"
           sub="💬 Have questions or ideas? Let’s talk! 🚀"
         />
+
         <div className="grid-12-cols mt-16">
           <div className="xl:col-span-5">
             <div className="flex-center card-border rounded-xl p-10">
@@ -62,8 +104,10 @@ const Contact = () => {
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="What’s your good name?"
+                    placeholder="What’s your name?"
                     required
+                    disabled
+                    className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
                   />
                 </div>
 
@@ -77,6 +121,8 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="What’s your email address?"
                     required
+                    disabled
+                    className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
                   />
                 </div>
 
@@ -96,17 +142,13 @@ const Contact = () => {
                 <button type="submit">
                   <div className="cta-button group">
                     <div className="bg-circle" />
-                    <p className="text">
-                      {loading ? "Sending..." : "Send Message"}
-                    </p>
-                    <div className="arrow-wrapper">
-                      <img src="/images/arrow-down.svg" alt="arrow" />
-                    </div>
+                    <p className="text">{loading ? "Sending..." : "Send Message"}</p>
                   </div>
                 </button>
               </form>
             </div>
           </div>
+
           <div className="xl:col-span-7 min-h-96">
             <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <ContactExperience />
@@ -114,6 +156,46 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Submission success popup */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+            <h3 className="text-xl font-bold mb-2">Thank you!</h3>
+            <p>I will get back to you ASAP!</p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="cta-button group"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Login prompt popup */}
+      {showLoginPrompt && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+            <h3 className="text-xl font-bold mb-2">Sign in required</h3>
+            <p>Please sign in with Google to send a message.</p>
+            <button
+              onClick={handleLogin}
+              className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-full"
+            >
+              Sign in with Google
+            </button>
+            <button
+              onClick={() => setShowLoginPrompt(false)}
+              className="mt-2 px-4 py-2 bg-gray-600 rounded hover:bg-gray-700 w-full"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

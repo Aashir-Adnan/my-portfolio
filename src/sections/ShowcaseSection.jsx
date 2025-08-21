@@ -65,10 +65,14 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           {/* UBS Project */}
           <div ref={ubsRef} className="first-project-wrapper">
-            <div className="image-wrapper">
-              <img src="/images/pern.jpeg" alt="UBS Stack Example" />
+            <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+              <img
+                src="/images/pern.jpeg"
+                alt="UBS Stack Example"
+                className="w-full h-auto object-contain scale-70"
+              />
             </div>
-            <div className="text-content">
+            <div className="text-content mt-4">
               <h2>UBS Framework - Backend</h2>
               <p className="text-white-50 md:text-xl">
                 Cutting down months of development time with a unified backend framework for all GranjurTech projects.<br />
@@ -79,29 +83,35 @@ const AppShowcase = () => {
             </div>
           </div>
 
-          {/* Project List */}
-          <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={reportRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
-                <img src="/images/report.png" alt="Management Platform Report Cron-Job" />
-              </div>
-              <h2>Daily Cross Management Platform Report Cron-Job</h2>
-            </div>
 
-            {/* Letter Bucket Game */}
-            <div className="project" ref={letterGameRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/game.png" alt="Letter Bucket Game" />
-              </div>
-              <h2>Letter Bucket Game - Assembly x86</h2>
-              <button
-                className="mt-2 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 relative z-50"
-                onClick={() => setShowDosbox(true)}
-              >
-                Try Me
-              </button>
-            </div>
-          </div>
+          {/* Project List */}
+<div className="project-list-wrapper overflow-hidden">
+  {/* First Project */}
+  <div className="project">
+    <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+      <img
+        src="/images/report.png"
+        alt="Management Platform Report Cron-Job"
+        className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
+      />
+    </div>
+    <h2 className="mt-2">Daily Cross Management Platform Report Cron-Job</h2>
+  </div>
+
+  {/* Letter Bucket Game */}
+  <div className="project" ref={letterGameRef}>
+    <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+      <img
+        src="/images/game.png"
+        alt="Letter Bucket Game"
+        className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
+      />
+    </div>
+    <h2 className="mt-2">Letter Bucket Game - Assembly x86</h2>
+  </div>
+</div>
+
+
         </div>
       </div>
 

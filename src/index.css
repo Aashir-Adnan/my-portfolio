@@ -4,17 +4,17 @@
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
 }
-
-html,
-body {
+html {
   scroll-behavior: smooth;
+}
+body {
   width: 100dvw;
   overflow-x: hidden;
   background-color: black;
   color: white;
-  scroll-behavior: smooth;
   font-family: "Mona Sans", sans-serif;
 }
+
 
 section {
   width: 100dvw;
