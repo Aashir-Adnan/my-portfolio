@@ -2,7 +2,14 @@ import { abilities } from "../constants";
 
 const FeatureCards = () => (
   <div className="w-full padding-x-lg">
-    <div className="mx-auto grid-3-cols">
+    <div
+      className="
+        mx-auto grid 
+        grid-cols-1         /* Mobile: 1 column */
+        md:grid-cols-3      /* Tablet & up: 3 columns */
+        gap-6 overflow-visible
+      "
+    >
       {abilities.map(({ imgPath, title, desc }) => (
         <div
           key={title}

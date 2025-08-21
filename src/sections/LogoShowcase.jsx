@@ -30,7 +30,7 @@ const LogoShowcaseContent = () => (
 
 export const LogoShowcase = () => {
   return (
-    <div className="relative flex flex-col h-full w-full">
+    <div className="relative flex flex-col h-full w-full brightness-110">
       {/* Video Background */}
       <video
         autoPlay

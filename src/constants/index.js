@@ -45,10 +45,10 @@ const words2 = [
 ];
 
 const counterItems = [
-  { value: 2, suffix: "+", label: "Years of Dev Experience" },
-  { value: 200, suffix: "+", label: "Average Users" },
-  { value: 34, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "User Satisfaction Rate" },
+  { value: 2, suffix: "+", label: "Years of Dev Experience", desc: "Working In Dev and Production Environments" },
+  { value: 200, suffix: "+", label: "Average Users", desc: "On Projects Built and Hosted Myself" },
+  { value: 34, suffix: "+", label: "Completed Projects", desc: "From Small Websites to Large Scale Applications" },
+  { value: 90, suffix: "%", label: "User Satisfaction Rate", desc: "Based on Feedback and Reviews" },
 ];
 
 const logoIconsList = [
@@ -167,24 +167,26 @@ const expCards = [
   {
     imgPath: "/images/granjur_logo.png",
     logoPath: "/images/granjur_logo.png",
-    title: "Full-Stack Developer",
+    title: "Full-Stack Developer @GranjurTech",
     date: "September 2024 - Present",
     responsibilities: [
       "Developed and maintained the UBS framework @GranjurTech, enhancing its performance, scalability and features.",
       "Created bots and deployed scripts to assist with internal processes, improving efficiency.",
       "Collaborated with cross-functional teams to provide technical support and resolve issues.",
     ],
+    link: "https://granjur.com",
   },
   {
     imgPath: "/images/exp2.png",
     logoPath: "/images/granjur_logo.png",
-    title: "Back-end Dev Intern",
+    title: "Back-end Dev Intern @GranjurTech",
     date: "June 2024 - September 2024",
     responsibilities: [
       "Created wireframes, designer requirements, database schemas and API documentation for an HR Management System.",
       "Laid the groundwork for the soon-to-be UBS framework backend",
       "Assisted in file management system development, API integration, and Saas application development.",
     ],
+    link: "https://granjur.com",
   },
   {
     imgPath: "/images/exp3.png",

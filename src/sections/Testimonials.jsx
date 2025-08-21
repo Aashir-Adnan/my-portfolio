@@ -4,6 +4,7 @@ import { signInWithPopup } from "firebase/auth";
 import { collection, addDoc, query, getDocs, orderBy } from "firebase/firestore";
 import TitleHeader from "../components/TitleHeader";
 import GlowCard from "../components/GlowCard";
+import encryption from "/videos/encryption-bg.webm";
 
 const Testimonials = () => {
   const [user, setUser] = useState(null);
@@ -25,7 +26,6 @@ const Testimonials = () => {
     if (!comment) return;
 
     if (!user) {
-      // Show popup to log in
       setPopupMessage("Please log in with Google to leave a comment!");
       setShowPopup(true);
       return;
@@ -36,7 +36,7 @@ const Testimonials = () => {
         name: user.displayName,
         email: user.email,
         comment,
-        approved: false, // Admin review required
+        approved: false,
         timestamp: new Date(),
       });
       setComment("");
@@ -55,8 +55,8 @@ const Testimonials = () => {
       const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
       const snapshot = await getDocs(q);
       const approved = snapshot.docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
-        .filter(c => c.approved);
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .filter((c) => c.approved);
       setApprovedComments(approved);
     };
     fetchComments();
@@ -67,45 +67,58 @@ const Testimonials = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
-      setShowPopup(false); // hide popup after login
+      setShowPopup(false);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <section id="testimonials" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5 z-10">
+    <section id="testimonials" className="relative flex-center section-padding overflow-hidden">
+      {/* 🔹 Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0 brightness-90"
+      >
+        <source src={encryption} type="video/webm" />
+      </video>
+
+      {/* 🔹 Optional gradient overlay for readability */}
+      <div className="absolute inset-0 bg-[#040015]/40 z-0"></div>
+
+      {/* 🔹 Main Content */}
+      <div className="relative z-10 w-full h-full md:px-10 px-5">
         <TitleHeader
-          title="What People Say About Me?"
+          title="What People Say About Me"
           sub="Peer's Feedback Highlights"
         />
 
-        {/* Comment Textarea (always visible) */}
-        <div className="my-4 flex flex-col gap-2 items-center z-10">
+        {/* Comment box */}
+        <div className="my-4 flex flex-col gap-2 items-center">
           <textarea
-            className="p-2 rounded bg-gray-800 text-white w-full max-w-md"
+            className="p-2 rounded bg-gray-800/70 backdrop-blur text-white w-full max-w-md"
             placeholder="Leave your feedback"
             value={comment}
-            onChange={e => setComment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
           />
-          <button
-            className="cta-button group"
-            onClick={handleSubmit}
-          >
-            
+          <button className="cta-button group" onClick={handleSubmit}>
             Submit
           </button>
         </div>
 
         {/* Testimonials */}
-        <div className="lg:columns-3 md:columns-2 columns-1 mt-16 z-10">
+        <div className="lg:columns-3 md:columns-2 columns-1 mt-16">
           {approvedComments.map((testimonial, index) => (
             <GlowCard card={testimonial} key={index} index={index}>
               <div className="flex items-center gap-3">
-                <div>
-                  <img src={testimonial.photoURL || "/images/person.png"} alt={testimonial.name} />
-                </div>
+                <img
+                  src={testimonial.photoURL || "/images/person.png"}
+                  alt={testimonial.name}
+                  className="w-10 h-10 rounded-full"
+                />
                 <div>
                   <p className="font-bold">{testimonial.name}</p>
                   <p className="text-white-50">{testimonial.comment}</p>
@@ -116,17 +129,14 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Popup */}
+      {/* 🔹 Popup */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="absolute inset-0 bg-black/50"></div> {/* overlay */}
+          <div className="absolute inset-0 bg-black/50"></div>
           <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
             <p>{popupMessage}</p>
             {!user && (
-              <button
-                onClick={handleLogin}
-                className="cta-button group"
-              >
+              <button onClick={handleLogin} className="cta-button group">
                 Sign in with Google
               </button>
             )}

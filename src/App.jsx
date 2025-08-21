@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { auth, provider } from "./firebase";
-import { signInWithPopup, signOut } from "firebase/auth";
 
 import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
@@ -16,21 +14,6 @@ import StarsCanvas from "./components/models/stars/stars";
 
 const App = () => {
   const [user, setUser] = useState(null);
-
-  const handleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      setUser(result.user);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleLogout = () => {
-    signOut(auth);
-    setUser(null);
-  };
-
   return (
     <>
       <StarsCanvas />

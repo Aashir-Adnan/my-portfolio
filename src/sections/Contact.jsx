@@ -80,124 +80,128 @@ const Contact = () => {
     }
   };
 
-  return (
-    <section id="contact" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5 z-[1]">
-        <TitleHeader
-          title="Get in Touch – Let’s Connect"
-          sub="💬 Have questions or ideas? Let’s talk! 🚀"
+return (
+  <section id="contact" className="flex-center section-padding">
+    <div className="w-full h-full md:px-10 px-5 z-[1]">
+      <TitleHeader
+        title="Get in Touch – Let’s Connect"
+        sub="💬 Have questions or ideas? Let’s talk! 🚀"
+      />
+
+      {/* Fixed responsive grid */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-16">
+  {/* Left column (form) */}
+  <div className="flex-center card-border rounded-xl p-10">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="w-full flex flex-col gap-7"
+    >
+      <div>
+        <label htmlFor="name">Your name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="What’s your name?"
+          required
+          disabled
+          className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
         />
-
-        <div className="grid-12-cols mt-16">
-          <div className="xl:col-span-5">
-            <div className="flex-center card-border rounded-xl p-10">
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className="w-full flex flex-col gap-7"
-              >
-                <div>
-                  <label htmlFor="name">Your name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="What’s your name?"
-                    required
-                    disabled
-                    className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="What’s your email address?"
-                    required
-                    disabled
-                    className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message">Your Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="How can I help you?"
-                    rows="5"
-                    required
-                  />
-                </div>
-
-                <button type="submit">
-                  <div className="cta-button group">
-                    <div className="bg-circle" />
-                    <p className="text">{loading ? "Sending..." : "Send Message"}</p>
-                  </div>
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-              <ContactExperience />
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* Submission success popup */}
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
-            <h3 className="text-xl font-bold mb-2">Thank you!</h3>
-            <p>I will get back to you ASAP!</p>
-            <button
-              onClick={() => setShowPopup(false)}
-              className="cta-button group"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <div>
+        <label htmlFor="email">Your Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="What’s your email address?"
+          required
+          disabled
+          className="bg-gray-700 text-gray-300 cursor-not-allowed p-2 rounded w-full"
+        />
+      </div>
 
-      {/* Login prompt popup */}
-      {showLoginPrompt && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
-            <h3 className="text-xl font-bold mb-2">Sign in required</h3>
-            <p>Please sign in with Google to send a message.</p>
-            <button
-              onClick={handleLogin}
-              className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-full"
-            >
-              Sign in with Google
-            </button>
-            <button
-              onClick={() => setShowLoginPrompt(false)}
-              className="mt-2 px-4 py-2 bg-gray-600 rounded hover:bg-gray-700 w-full"
-            >
-              Cancel
-            </button>
-          </div>
+      <div>
+        <label htmlFor="message">Your Message</label>
+        <textarea
+          id="message"
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          placeholder="How can I help you?"
+          rows="5"
+          required
+          className="bg-gray-800 p-2 rounded w-full"
+        />
+      </div>
+
+      <button type="submit">
+        <div className="cta-button group">
+          <div className="bg-circle" />
+          <p className="text">{loading ? "Sending..." : "Send Message"}</p>
         </div>
-      )}
-    </section>
-  );
+      </button>
+    </form>
+  </div>
+
+  {/* Right column (3D model) */}
+  <div className="min-h-96">
+    <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+      <ContactExperience />
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    {/* Submission success popup */}
+    {showPopup && (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+          <h3 className="text-xl font-bold mb-2">Thank you!</h3>
+          <p>I will get back to you ASAP!</p>
+          <button
+            onClick={() => setShowPopup(false)}
+            className="cta-button group"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    )}
+
+    {/* Login prompt popup */}
+    {showLoginPrompt && (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative bg-gray-900 text-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+          <h3 className="text-xl font-bold mb-2">Sign in required</h3>
+          <p>Please sign in with Google to send a message.</p>
+          <button
+            onClick={handleLogin}
+            className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-full"
+          >
+            Sign in with Google
+          </button>
+          <button
+            onClick={() => setShowLoginPrompt(false)}
+            className="mt-2 px-4 py-2 bg-gray-600 rounded hover:bg-gray-700 w-full"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    )}
+  </section>
+);
+
 };
 
 export default Contact;

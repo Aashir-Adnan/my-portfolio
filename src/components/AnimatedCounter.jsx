@@ -14,13 +14,14 @@ const AnimatedCounter = () => {
   useGSAP(() => {
     countersRef.current.forEach((counter, index) => {
       const numberElement = counter.querySelector(".counter-number");
+      const labelElement = counter.querySelector(".counter-label");
       const item = counterItems[index];
 
+      // Initial number animation
       gsap.set(numberElement, { innerText: "0" });
-
       gsap.to(numberElement, {
         innerText: item.value,
-        duration: 2.5,
+        duration: 1.25,
         ease: "power2.out",
         snap: { innerText: 1 },
         scrollTrigger: {
@@ -31,24 +32,82 @@ const AnimatedCounter = () => {
           numberElement.textContent = `${item.value}${item.suffix}`;
         },
       });
-    }, counterRef);
+
+      // Hover in
+      counter.addEventListener("mouseenter", () => {
+        gsap.to(counter, {
+          backgroundColor: "#6B21A8", // purple-800
+          duration: 0.3,
+        });
+
+        gsap.to(labelElement, {
+          opacity: 0,
+          y: -10,
+          duration: 0.2,
+          onComplete: () => {
+            labelElement.textContent = item.desc; // swap to desc
+            gsap.fromTo(
+              labelElement,
+              { opacity: 0, y: 10 },
+              { opacity: 1, y: 0, duration: 0.3 }
+            );
+          },
+        });
+      });
+
+      // Hover out
+      counter.addEventListener("mouseleave", () => {
+        gsap.to(counter, {
+          backgroundColor: "#18181B", // bg-zinc-900
+          duration: 0.3,
+        });
+
+        gsap.to(labelElement, {
+          opacity: 0,
+          y: -10,
+          duration: 0.2,
+          onComplete: () => {
+            labelElement.textContent = item.label; // swap back to label
+            gsap.fromTo(
+              labelElement,
+              { opacity: 0, y: 10 },
+              { opacity: 1, y: 0, duration: 0.3 }
+            );
+          },
+        });
+      });
+    });
   }, []);
 
   return (
-    <div id="counter" ref={counterRef} className="padding-x-lg xl:mt-0 mt-32">
-      <div className="mx-auto grid-4-cols">
+    <div id="counter" ref={counterRef} className="padding-x-lg mt-10 xl:mt-0">
+      <div
+        className="
+          mx-auto grid 
+          grid-cols-1
+          md:grid-cols-4
+          gap-6 overflow-visible
+        "
+      >
         {counterItems.map((item, index) => (
-          <div
-            key={index}
-            ref={(el) => el && (countersRef.current[index] = el)}
-            className="bg-zinc-900 rounded-lg p-10 flex flex-col justify-center 
-                       transition-transform duration-300 hover:-translate-y-2"
-          >
-            <div className="counter-number text-white-50 text-5xl font-bold mb-2">
-              0 {item.suffix}
-            </div>
-            <div className="text-white-50 text-lg">{item.label}</div>
-          </div>
+         <div
+  key={index}
+  ref={(el) => el && (countersRef.current[index] = el)}
+  className="bg-zinc-900 rounded-lg min-w-[160px] p-6 flex flex-col items-center justify-center 
+             transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+>
+  <div className="counter-number text-white-50 text-2xl font-bold mb-2">
+    0 {item.suffix}
+  </div>
+
+  {/* Label wrapper with fixed height */}
+  <div className="relative w-full h-10 flex items-center justify-center overflow-hidden">
+    <div className="counter-label absolute text-white-50 text-sm text-center px-2">
+      {item.label}
+    </div>
+  </div>
+</div>
+
         ))}
       </div>
     </div>

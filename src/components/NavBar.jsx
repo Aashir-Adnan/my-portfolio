@@ -100,38 +100,63 @@ const NavBar = () => {
               </div>
             </div>
           ) : (
-            <div
-              className="text-white cursor-pointer hover:text-purple-400 transition"
-              onClick={() => setShowLoginPrompt(true)}
-            >
-              Login
-            </div>
+          <div
+            className="text-white cursor-pointer hover:text-purple-400 transition"
+            onClick={() => {
+              if (dropdownOpen) {
+                // Close user dropdown if it’s open
+                setDropdownOpen(false);
+                return;
+              }
+              if (showLoginPrompt) {
+                // If already open, just close it
+                setShowLoginPrompt(false);
+              } else {
+                // Otherwise open it
+                setShowLoginPrompt(true);
+              }
+            }}
+          >
+            Login
+          </div>
+
+
           )}
         </nav>
       </div>
-
-      {/* Login Prompt */}
+      {/* Login Prompt Dropdown */}
       {showLoginPrompt && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="bg-gray-900 text-white rounded-lg p-6 shadow-lg z-50 max-w-sm mx-auto">
-            <h3 className="text-xl font-bold mb-2">Login Required</h3>
-            <p className="mb-4">Login to leave feedback and/or contact me!</p>
-            <button
-              onClick={handleLogin}
-              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 mr-2"
-            >
-              Login with Google
-            </button>
-            <button
-              onClick={() => setShowLoginPrompt(false)}
-              className="bg-gray-700 px-4 py-2 rounded hover:bg-gray-800"
-            >
-              Cancel
-            </button>
-          </div>
+        <div
+          className="absolute right-6 mt-7 w-40 bg-gray-100 text-gray-900 rounded-xl shadow-lg opacity-0 transform -translate-y-2 transition-all duration-300 animate-slideDown"
+          style={{ animation: "slideDown 0.25s forwards" }}
+          ref={(el) => {
+            if (el) {
+              const handleClickOutside = (e) => {
+                if (!el.contains(e.target)) {
+                  setShowLoginPrompt(false);
+                  document.removeEventListener("mousedown", handleClickOutside);
+                }
+              };
+              document.addEventListener("mousedown", handleClickOutside);
+            }
+          }}
+        >
+          <button
+            onClick={handleLogin}
+            className="w-full px-4 py-2 text-left rounded-t-xl hover:bg-purple-100 transition-colors duration-300"
+          >
+            Login with Google
+          </button>
+          <button
+            onClick={() => setShowLoginPrompt(false)}
+            className="w-full px-4 py-2 text-left rounded-b-xl hover:bg-purple-100 transition-colors duration-300"
+          >
+            Cancel
+          </button>
         </div>
       )}
+
+
 
       {/* Dropdown animation CSS */}
       <style>{`
