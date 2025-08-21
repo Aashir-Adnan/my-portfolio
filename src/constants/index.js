@@ -16,7 +16,7 @@ const navLinks = [
     link: "#work",
   },
   {
-    name: "Testimonials",
+    name: "References",
     link: "#testimonials",
   },
 ];
