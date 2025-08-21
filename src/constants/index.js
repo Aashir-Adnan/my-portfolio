@@ -1,5 +1,9 @@
 const navLinks = [
   {
+    name: "About Me",
+    link: "#hero"
+  },
+  {
     name: "Work",
     link: "#work",
   },
@@ -18,74 +22,88 @@ const navLinks = [
 ];
 
 const words = [
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
+  { text: "Creative", imgPath: "/images/ideas.svg" },
+  { text: "Robust", imgPath: "/images/concepts.svg" },
+  { text: "Efficient", imgPath: "/images/designs.svg" },
+  { text: "Lasting", imgPath: "/images/code.svg" },
+  { text: "Creative", imgPath: "/images/ideas.svg" },
+  { text: "Robust", imgPath: "/images/concepts.svg" },
+  { text: "Efficient", imgPath: "/images/designs.svg" },
+  { text: "Lasting", imgPath: "/images/code.svg" },
+];
+
+const words2 = [
+  { text: "Deliver Results" },
+  { text: "Embody Visions"},
+  { text: "Feel Alive"},
+  { text: "Transform Ideas"},
+  { text: "Deliver Results" },
+  { text: "Embody Visions"},
+  { text: "Feel Alive"},
+  { text: "Transform Ideas"},
+
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 2, suffix: "+", label: "Years of Dev Experience" },
+  { value: 200, suffix: "+", label: "Average Users" },
+  { value: 34, suffix: "+", label: "Completed Projects" },
+  { value: 90, suffix: "%", label: "User Satisfaction Rate" },
 ];
 
 const logoIconsList = [
   {
-    imgPath: "/images/logos/company-logo-1.png",
+    imgPath: "/images/logos/amazon.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-2.png",
+    imgPath: "/images/logos/adobe.png",
   },
   {
-    imgPath: "/images/logos/company-logo-3.png",
+    imgPath: "/images/logos/docker.png",
   },
   {
-    imgPath: "/images/logos/company-logo-4.png",
+    imgPath: "/images/logos/microsoft.png",
   },
   {
-    imgPath: "/images/logos/company-logo-5.png",
+    imgPath: "/images/logos/nvidia.png",
   },
   {
-    imgPath: "/images/logos/company-logo-6.png",
+    imgPath: "/images/logos/python.svg",
   },
   {
-    imgPath: "/images/logos/company-logo-7.png",
+    imgPath: "/images/logos/react.png",
   },
   {
-    imgPath: "/images/logos/company-logo-8.png",
+    imgPath: "/images/logos/three.png",
   },
   {
-    imgPath: "/images/logos/company-logo-9.png",
+    imgPath: "/images/logos/node.png",
   },
   {
-    imgPath: "/images/logos/company-logo-10.png",
+    imgPath: "/images/logos/git.svg",
   },
   {
-    imgPath: "/images/logos/company-logo-11.png",
+    imgPath: "/images/logos/vercel.png",
   },
+  
 ];
+
 
 const abilities = [
   {
     imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
+    title: "Tech Stacks",
+    desc: "Fluent in React, Node.js, Python, and Three.js for full-stack development.",
   },
   {
     imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
+    title: "Database Systems",
+    desc: "Experienced with MongoDB, PostgreSQL, and MySQL for robust data management.",
   },
   {
     imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
+    title: "Scripting & Automation",
+    desc: "Proficient in Python and JavaScript for automating tasks and enhancing workflows.",
   },
 ];
 
@@ -116,70 +134,67 @@ const techStackIcons = [
   {
     name: "React Developer",
     modelPath: "/models/react_logo-transformed.glb",
-    scale: 1,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Python Developer",
-    modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
   },
   {
+    name: "Blender Artist",
+    modelPath: "/models/the-fool.glb",
+    scale: 1.3,
+    rotation: [-0.1, 0, 0],
+  },
+  {
     name: "Backend Developer",
     modelPath: "/models/node-transformed.glb",
-    scale: 5,
+    scale: 4,
     rotation: [0, -Math.PI / 2, 0],
   },
   {
     name: "Interactive Developer",
     modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
+    scale: 0.04,
     rotation: [0, 0, 0],
   },
   {
     name: "Project Manager",
     modelPath: "/models/git-svg-transformed.glb",
-    scale: 0.05,
+    scale: 0.04,
     rotation: [0, -Math.PI / 4, 0],
-  },
+  }
 ];
 
 const expCards = [
   {
-    review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    imgPath: "/images/granjur_logo.png",
+    logoPath: "/images/granjur_logo.png",
+    title: "Full-Stack Developer",
+    date: "September 2024 - Present",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Developed and maintained the UBS framework @GranjurTech, enhancing its performance, scalability and features.",
+      "Created bots and deployed scripts to assist with internal processes, improving efficiency.",
+      "Collaborated with cross-functional teams to provide technical support and resolve issues.",
     ],
   },
   {
-    review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
     imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+    logoPath: "/images/granjur_logo.png",
+    title: "Back-end Dev Intern",
+    date: "June 2024 - September 2024",
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Created wireframes, designer requirements, database schemas and API documentation for an HR Management System.",
+      "Laid the groundwork for the soon-to-be UBS framework backend",
+      "Assisted in file management system development, API integration, and Saas application development.",
     ],
   },
   {
-    review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
     imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    logoPath: "/images/freelance_logo.png",
+    title: "Freelance Developer + Artist",
+    date: "September 2023 - Present",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Built trivial web applications and websites for public use directed at improving university student life.",
+      "Motion graphics for personal and freelance projects.",
+      "VFX and 3D art for personal projects.",
     ],
   },
 ];
@@ -248,23 +263,23 @@ const socialImgs = [
   {
     name: "insta",
     imgPath: "/images/insta.png",
+    link: "https://www.instagram.com/ihavethisthingwithsatire"
   },
   {
-    name: "fb",
-    imgPath: "/images/fb.png",
-  },
-  {
-    name: "x",
-    imgPath: "/images/x.png",
+    name: "github",
+    imgPath: "/images/logos/git.webp",
+    link: "https://github.com/Aashir-Adnan"
   },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
-  },
+    link: "https://www.linkedin.com/in/aashir-adnan-69521b253"
+  }
 ];
 
 export {
   words,
+  words2,
   abilities,
   logoIconsList,
   counterItems,
