@@ -62,19 +62,21 @@ const AppShowcase = () => {
   return (
     <div id="work" ref={sectionRef} className="app-showcase relative z-2">
       <div className="w-full">
-        <div className="showcaselayout">
+        {/* Use a grid layout for all projects */}
+        <div className="showcaselayout grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+
           {/* UBS Project */}
-          <div ref={ubsRef} className="first-project-wrapper">
+          <div ref={ubsRef} className="project-card">
             <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
               <img
                 src="/images/pern.jpeg"
                 alt="UBS Stack Example"
-                className="w-full h-auto object-contain scale-70"
+                className="w-full h-auto object-contain"
               />
             </div>
             <div className="text-content mt-4">
               <h2>UBS Framework - Backend</h2>
-              <p className="text-white-50 md:text-xl">
+              <p className="text-white-50 md:text-lg">
                 Cutting down months of development time with a unified backend framework for all GranjurTech projects.<br />
                 State of the art encryption (Tier 2), authentication, and database management.<br />
                 Online and local file storage (AWS S3).<br />
@@ -83,34 +85,29 @@ const AppShowcase = () => {
             </div>
           </div>
 
+          {/* Daily Report */}
+          <div ref={reportRef} className="project-card">
+            <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+              <img
+                src="/images/report.png"
+                alt="Management Platform Report Cron-Job"
+                className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
+              />
+            </div>
+            <h2 className="mt-2 text-white">Daily Cross Management Platform Report Cron-Job</h2>
+          </div>
 
-          {/* Project List */}
-<div className="project-list-wrapper overflow-hidden">
-  {/* First Project */}
-  <div className="project">
-    <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
-      <img
-        src="/images/report.png"
-        alt="Management Platform Report Cron-Job"
-        className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
-      />
-    </div>
-    <h2 className="mt-2">Daily Cross Management Platform Report Cron-Job</h2>
-  </div>
-
-  {/* Letter Bucket Game */}
-  <div className="project" ref={letterGameRef}>
-    <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
-      <img
-        src="/images/game.png"
-        alt="Letter Bucket Game"
-        className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
-      />
-    </div>
-    <h2 className="mt-2">Letter Bucket Game - Assembly x86</h2>
-  </div>
-</div>
-
+          {/* Letter Bucket Game */}
+          <div ref={letterGameRef} className="project-card">
+            <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+              <img
+                src="/images/game.png"
+                alt="Letter Bucket Game"
+                className="w-60 md:w-64 lg:w-68 h-auto object-contain rounded-md"
+              />
+            </div>
+            <h2 className="mt-2 text-white">Letter Bucket Game - Assembly x86</h2>
+          </div>
 
         </div>
       </div>
@@ -119,15 +116,12 @@ const AppShowcase = () => {
       {showDosbox && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="relative w-[500px] h-[400px] bg-black rounded-lg shadow-xl">
-            {/* Close Button */}
             <button
               className="absolute top-2 right-2 text-white text-xl font-bold hover:text-red-500 z-50"
               onClick={() => setShowDosbox(false)}
             >
               ✕
             </button>
-
-            {/* DOSBox Container */}
             <div id="dosbox" className="w-full h-full rounded-lg overflow-hidden"></div>
           </div>
         </div>
