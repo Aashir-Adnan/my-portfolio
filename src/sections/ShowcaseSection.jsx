@@ -148,11 +148,11 @@
           <div className="showcaselayout grid gap-10 mt-10 md:grid-cols-2">
             {/* UBS Project */}
             <div ref={ubsRef} className="project-card">
-              <div className="image-wrapper bg-black/50 p-6 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
+              <div className="image-wrapper bg-black/50 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
                 <img
                   src="/images/pern.jpeg"
                   alt="UBS Stack Example"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-contain scale-50 brightness-75"
                 />
               </div>
               <div className="text-content mt-4">

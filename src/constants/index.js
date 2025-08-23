@@ -137,12 +137,7 @@ const techStackIcons = [
     scale: 0.8,
     rotation: [0, 0, 0],
   },
-  {
-    name: "Blender Artist",
-    modelPath: "/models/the-fool.glb",
-    scale: 1.3,
-    rotation: [-0.1, 0, 0],
-  },
+
   {
     name: "Backend Developer",
     modelPath: "/models/node-transformed.glb",
@@ -160,7 +155,13 @@ const techStackIcons = [
     modelPath: "/models/git-svg-transformed.glb",
     scale: 0.04,
     rotation: [0, -Math.PI / 4, 0],
-  }
+  },
+    {
+    name: "Blender Artist",
+    modelPath: "/models/the-fool.glb",
+    scale: 1.3,
+    rotation: [-0.1, 0, 0],
+  },
 ];
 
 const expCards = [
@@ -192,12 +193,13 @@ const expCards = [
     imgPath: "/images/exp3.png",
     logoPath: "/images/freelance_logo.png",
     title: "Freelance Developer + Artist",
-    date: "September 2023 - Present",
+    date: "September 2020 - Present",
     responsibilities: [
       "Built trivial web applications and websites for public use directed at improving university student life.",
       "Motion graphics for personal and freelance projects.",
       "VFX and 3D art for personal projects.",
     ],
+    link: "https://www.linkedin.com/in/aashir-adnan-69521b253"
   },
 ];
 

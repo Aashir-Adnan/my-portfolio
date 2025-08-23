@@ -77,7 +77,7 @@ export const HeroVideo = () => {
         lg:-top-140 lg:h-full lg:scale-110  lg:object-cover
 
         /* Large desktop */
-        xl:-top-140 xl:h-[800px] xl:scale-125 xl:object-cover
+        xl:-top-145 xl:h-full xl:scale-150 xl:object-cover
       "
     >
       <source src={blackhole} type="video/webm" />

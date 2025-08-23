@@ -45,15 +45,15 @@ const TechStack = () => {
         <div className="
       grid grid-cols-2 gap-6 justify-items-center mt-10
       sm:grid-cols-2
-      md:flex md:flex-row md:flex-nowrap md:gap-4 md:overflow-x-auto
+      md:flex md:flex-row md:flex-nowrap md:gap-4 md:overflow-x-auto 
     "
         >
           {techStackIcons.map((techStackIcon, idx) => (
             <div
               key={techStackIcon.name}
               className={`
-          card-border tech-card overflow-hidden group rounded-lg
-          w-full max-w-[200px] flex justify-center
+          card-border tech-card overflow-hidden group rounded-lg bg-black
+          w-full flex justify-center
           ${idx === techStackIcons.length - 1 && techStackIcons.length % 2 !== 0
                   ? "col-span-2 justify-self-center md:col-span-1"
                   : ""}
