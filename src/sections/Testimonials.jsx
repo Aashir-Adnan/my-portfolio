@@ -109,24 +109,51 @@ const Testimonials = () => {
           </button>
         </div>
 
-        {/* Testimonials */}
-        <div className="lg:columns-3 md:columns-2 columns-1 mt-16">
-          {approvedComments.map((testimonial, index) => (
-            <GlowCard card={testimonial} key={index} index={index}>
+{/* Testimonials */}
+<div className="mt-16">
+  {/* ✅ Mobile Layout (2x2 scrollable grid) */}
+  <div className="grid grid-cols-2 overflow-x-auto gap-4 snap-x snap-mandatory md:hidden">
+    {approvedComments.map((testimonial, index) => (
+      <div
+        key={index}
+        className="snap-center flex-shrink-0 w-[110vw] grid grid-cols-2 gap-4"
+      >
+        {approvedComments
+          .slice(index * 4, index * 4 + 4) // take 4 testimonials at a time
+          .map((t, i) => (
+            <GlowCard card={t} key={i} index={i}>
               <div className="flex items-center gap-3">
-                <img
-                  src={testimonial.photoURL || "/images/person.png"}
-                  alt={testimonial.name}
-                  className="w-10 h-10 rounded-full"
-                />
                 <div>
-                  <p className="font-bold">{testimonial.name}</p>
-                  <p className="text-white-50">{testimonial.comment}</p>
+                  <p className="font-bold text-md">{t.name}</p>
+                  <p className="text-white-50 text-sm">{t.comment}</p>
                 </div>
               </div>
             </GlowCard>
           ))}
+      </div>
+    ))}
+  </div>
+
+  {/* ✅ Desktop Layout (columns) */}
+  <div className="hidden md:block lg:columns-3 md:columns-2 columns-1">
+    {approvedComments.map((testimonial, index) => (
+      <GlowCard card={testimonial} key={index} index={index}>
+        <div className="flex items-center gap-3">
+          <img
+            src={testimonial.photoURL || "/images/person.png"}
+            alt={testimonial.name}
+            className="w-10 h-10 rounded-full"
+          />
+          <div>
+            <p className="font-bold">{testimonial.name}</p>
+            <p className="text-white-50">{testimonial.comment}</p>
+          </div>
         </div>
+      </GlowCard>
+    ))}
+  </div>
+</div>
+
       </div>
 
       {/* 🔹 Popup */}

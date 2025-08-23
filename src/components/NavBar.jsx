@@ -37,22 +37,60 @@ const NavBar = () => {
     await signOut(auth);
     setDropdownOpen(false);
   };
-
   return (
     <header
-      className={`fixed top-0 w-full h-[65px] z-50 transition-colors duration-300
-        bg-[#04001540] backdrop-blur-md border-b border-white/10 shadow-lg z-100`}
+      className={`
+        fixed top-0 w-full z-50 transition-colors duration-300
+        bg-[#04001540] backdrop-blur-md border-b border-white/10 shadow-lg z-100
+        block sm:block md:block lg:block xl:block
+
+        /* Heights by breakpoint */
+        h-[55px]       /* base */
+        sm:h-[60px]    /* small screens */
+        md:h-[65px]    /* medium screens */
+      `}
     >
-      <div className="w-full h-full flex items-center justify-between px-10">
+      <div
+        className={`
+          w-full h-full flex items-center 
+          justify-between
+
+          px-4         /* base padding */
+          sm:px-6       /* small screens */
+          md:px-10      /* medium screens */
+        `}
+      >
         {/* Logo */}
-        <a href="#hero" className="text-white font-bold text-lg">
-          Aashir Adnan
+        <a
+          href="#hero"
+          className={`
+            text-white font-bold
+            text-base   /* base */
+            sm:text-lg  /* small */
+            md:text-xl  /* medium */
+          `}
+        >
+          Aashir Adnan's Portfolio
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-4">
-          <div className="bg-[#04001580] backdrop-blur-md rounded-full px-10 py-3">
-            <ul className="flex gap-8 text-gray-200">
+        <nav className="hidden lg:flex items-center gap-4">
+          <div
+            className={`
+              bg-[#04001580] backdrop-blur-md rounded-full
+              px-6 py-2            /* base */
+              sm:px-8 sm:py-2.5     /* small */
+              lg:px-10 md:py-3      /* medium */
+            `}
+          >
+            <ul
+              className={`
+                flex text-gray-200
+                gap-4 text-sm          /* base */
+                sm:gap-6 sm:text-base  /* small */
+                lg:gap-8               /* medium */
+              `}
+            >
               {navLinks.map(({ link, name }) => (
                 <li key={name} className="group relative">
                   <a href={link} className="hover:text-purple-400 transition">
@@ -64,16 +102,22 @@ const NavBar = () => {
             </ul>
           </div>
 
-          {/* Contact / Login */}
+          {/* Contact / Login Buttons */}
           {user ? (
             <div className="relative flex items-center gap-2">
               <a
                 href="#contact"
-                className="bg-purple-600/80 hover:bg-purple-600 text-white px-5 py-2 rounded-full shadow-md transition"
+                className={`
+                  bg-purple-600/80 hover:bg-purple-600 text-white shadow-md transition rounded-full
+                  px-3 py-1.5 text-sm        /* base */
+                  sm:px-4 sm:py-2 sm:text-base
+                  md:px-5
+                `}
               >
                 Contact me
               </a>
 
+              {/* User Dropdown */}
               <div
                 className="relative cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -81,53 +125,103 @@ const NavBar = () => {
                 <img
                   src={user.photoURL || "/images/person.png"}
                   alt={user.displayName}
-                  className="w-8 h-8 rounded-full border-2 border-white"
+                  className={`
+                    rounded-full border-2 border-white
+                    w-7 h-7    /* base */
+                    sm:w-8 sm:h-8
+                  `}
                 />
                 {dropdownOpen && (
                   <div
-                    className="absolute right-0 mt-7 w-36 bg-gray-900 rounded shadow-lg text-white opacity-0 transform -translate-y-2 transition-all duration-300 animate-slideDown"
+                    className={`
+                      absolute right-0 rounded shadow-lg text-white bg-gray-900
+                      w-32 mt-6 opacity-0 transform -translate-y-2 transition-all duration-300
+                      sm:w-36 sm:mt-7
+                    `}
                     style={{ animation: "slideDown 0.25s forwards" }}
                   >
                     <button
                       onClick={handleLogout}
-                      className="w-full px-4 py-2 text-left hover:bg-gray-800 rounded-b"
+                      className="w-full px-4 py-2 text-left hover:bg-gray-800 rounded-b text-sm sm:text-base"
                     >
                       Logout
                     </button>
                   </div>
                 )}
-
               </div>
             </div>
           ) : (
-          <div
-            className="text-white cursor-pointer hover:text-purple-400 transition"
-            onClick={() => {
-              if (dropdownOpen) {
-                // Close user dropdown if it’s open
-                setDropdownOpen(false);
-                return;
-              }
-              if (showLoginPrompt) {
-                // If already open, just close it
-                setShowLoginPrompt(false);
-              } else {
-                // Otherwise open it
-                setShowLoginPrompt(true);
-              }
-            }}
-          >
-            Login
-          </div>
-
-
+            <div
+              className="text-white cursor-pointer hover:text-purple-400 transition text-sm sm:text-base"
+              onClick={() => {
+                if (dropdownOpen) {
+                  setDropdownOpen(false);
+                  return;
+                }
+                setShowLoginPrompt(!showLoginPrompt);
+              }}
+            >
+              Login
+            </div>
           )}
         </nav>
+        {/* Desktop Nav */}
+
+        {/* Mobile Nav */}
+        <nav className="flex lg:hidden items-center justify-end px-4 py-2">
+          {user ? (
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              <img
+                src={user.photoURL || "/images/person.png"}
+                alt={user.displayName}
+                className="rounded-full border-2 border-white w-8 h-8"
+              />
+              {dropdownOpen && (
+                <div
+                  className={`
+                    absolute right-0 rounded shadow-lg text-white bg-gray-900
+                    w-32 mt-2 opacity-0 transform translate-y-3 transition-all duration-300
+                  `}
+                  style={{ animation: "slideDown 0.25s forwards" }}
+                >
+                  <button
+                    onClick={handleLogout}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-800 rounded-b text-sm"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div
+              className="text-white cursor-pointer hover:text-purple-400 transition text-sm"
+              onClick={() => {
+                if (dropdownOpen) {
+                  setDropdownOpen(false);
+                  return;
+                }
+                setShowLoginPrompt(!showLoginPrompt);
+              }}
+            >
+              Login
+            </div>
+          )}
+        </nav>
+
       </div>
+
       {/* Login Prompt Dropdown */}
       {showLoginPrompt && (
         <div
-          className="absolute right-6 mt-7 w-40 bg-gray-100 text-gray-900 rounded-xl shadow-lg opacity-0 transform -translate-y-2 transition-all duration-300 animate-slideDown"
+          className={`
+            absolute rounded-xl shadow-lg text-gray-900 bg-gray-100
+            right-4 w-36 mt-6 opacity-0 transform -translate-y-2 transition-all duration-300
+            sm:right-6 sm:w-40 sm:mt-7
+          `}
           style={{ animation: "slideDown 0.25s forwards" }}
           ref={(el) => {
             if (el) {
@@ -143,36 +237,30 @@ const NavBar = () => {
         >
           <button
             onClick={handleLogin}
-            className="w-full px-4 py-2 text-left rounded-t-xl hover:bg-purple-100 transition-colors duration-300"
+            className="w-full px-3 py-2 text-left rounded-t-xl hover:bg-purple-100 transition-colors duration-300 text-sm sm:px-4 sm:text-base"
           >
             Login with Google
           </button>
           <button
             onClick={() => setShowLoginPrompt(false)}
-            className="w-full px-4 py-2 text-left rounded-b-xl hover:bg-purple-100 transition-colors duration-300"
+            className="w-full px-3 py-2 text-left rounded-b-xl hover:bg-purple-100 transition-colors duration-300 text-sm sm:px-4 sm:text-base"
           >
             Cancel
           </button>
         </div>
       )}
 
-
-
-      {/* Dropdown animation CSS */}
+      {/* Dropdown animation */}
       <style>{`
         @keyframes slideDown {
-          0% {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          0% { opacity: 0; transform: translateY(-10px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </header>
   );
+
+
 };
 
 export default NavBar;
