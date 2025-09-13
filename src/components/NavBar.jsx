@@ -60,7 +60,7 @@ const NavBar = () => {
           md:px-10      /* medium screens */
         `}
       >
-        {/* Logo */}
+        
         <a
           href="#hero"
           className={`
@@ -73,7 +73,7 @@ const NavBar = () => {
           Aashir Adnan's Portfolio
         </a>
 
-        {/* Desktop Nav */}
+        
         <nav className="hidden lg:flex items-center gap-4">
           <div
             className={`
@@ -102,7 +102,7 @@ const NavBar = () => {
             </ul>
           </div>
 
-          {/* Contact / Login Buttons */}
+          
           {user ? (
             <div className="relative flex items-center gap-2">
               <a
@@ -117,7 +117,7 @@ const NavBar = () => {
                 Contact me
               </a>
 
-              {/* User Dropdown */}
+              
               <div
                 className="relative cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -165,9 +165,9 @@ const NavBar = () => {
             </div>
           )}
         </nav>
-        {/* Desktop Nav */}
+        
 
-        {/* Mobile Nav */}
+        
         <nav className="flex lg:hidden items-center justify-end px-4 py-2">
           {user ? (
             <div
@@ -214,7 +214,7 @@ const NavBar = () => {
 
       </div>
 
-      {/* Login Prompt Dropdown */}
+      
       {showLoginPrompt && (
         <div
           className={`
@@ -250,7 +250,7 @@ const NavBar = () => {
         </div>
       )}
 
-      {/* Dropdown animation */}
+      
       <style>{`
         @keyframes slideDown {
           0% { opacity: 0; transform: translateY(-10px); }

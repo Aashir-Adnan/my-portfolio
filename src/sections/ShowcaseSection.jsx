@@ -57,10 +57,9 @@
       setTimeout(() => {
         setSelectedProject(null);
         setClosing(false);
-      }, 300); // match animation duration
+      }, 300);
     };
 
-    // GSAP animations
     useGSAP(() => {
       gsap.fromTo(sectionRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5 });
       gsap.fromTo(
@@ -78,7 +77,6 @@
       );
     }, []);
 
-    // Load JS-DOS
     useEffect(() => {
       if (!dosboxLoaded) {
         const script = document.createElement("script");
@@ -89,7 +87,6 @@
       }
     }, [dosboxLoaded]);
 
-    // Run DOS game when DOSBox is visible
     useEffect(() => {
       if (showDosbox && dosboxLoaded && window.Dos) {
         window
@@ -102,7 +99,6 @@
       }
     }, [showDosbox, dosboxLoaded]);
 
-    // Track cursor position
     useEffect(() => {
       const moveHandler = (e) => {
         setCursorPos({ x: e.clientX, y: e.clientY });
@@ -116,7 +112,6 @@
     if (!modalRef.current) return;
 
     if (selectedProject && !closing) {
-      // Animate in
       gsap.fromTo(
         modalRef.current,
         { autoAlpha: 0, y: 40, scale: 0.95 },
@@ -146,7 +141,6 @@
           <TitleHeader title="Some of My Work" sub="Projects & Contributions" />
 
           <div className="showcaselayout grid gap-10 mt-10 md:grid-cols-2">
-            {/* UBS Project */}
             <div ref={ubsRef} className="project-card">
               <div className="image-wrapper bg-black/50 rounded-xl flex justify-center items-center transform transition-transform duration-300 hover:-translate-y-2">
                 <img
@@ -167,7 +161,6 @@
                   Emailing and notification system included.
                   <br />
                 </p>
-                {/* UBS Stack Logos */}
                 <div className="flex flex-wrap gap-3 mt-4">
                   {ubsStack.map((logo, i) => (
                     <img
@@ -182,7 +175,6 @@
               </div>
             </div>
 
-            {/* Project List */}
             <div className="flex flex-col gap-6 text-white justify-center">
               {projects.map((project, idx) => (
                 <div
@@ -204,7 +196,6 @@
           </div>
         </div>
 
-        {/* Floating image on hover */}
         {hoveredProject?.img && (
           <img
             src={hoveredProject.img}
@@ -217,7 +208,6 @@
           />
         )}
 
-        {/* DOSBox Overlay */}
         {showDosbox && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
             <div className="relative w-[500px] h-[400px] bg-black rounded-lg shadow-xl">
@@ -232,7 +222,6 @@
           </div>
         )}
 
-  {/* Project Details Popup */}
   {(selectedProject || closing) && (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
@@ -264,7 +253,6 @@
 
         <p className="text-white-70 mb-4">{selectedProject?.desc}</p>
 
-        {/* Language logos */}
         {selectedProject?.languages && (
           <div className="flex flex-wrap gap-3 mt-4">
             {selectedProject.languages.map((lang, i) => (

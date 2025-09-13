@@ -88,9 +88,9 @@ return (
         sub="💬 Have questions or ideas? Let’s talk! 🚀"
       />
 
-      {/* Fixed responsive grid */}
+      
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-16">
-  {/* Left column (form) */}
+  
   <div className="flex-center card-border rounded-xl p-10">
     <form
       ref={formRef}
@@ -150,7 +150,7 @@ return (
     </form>
   </div>
 
-  {/* Right column (3D model) */}
+  
   <div className="min-h-96">
     <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
       <ContactExperience />
@@ -160,7 +160,7 @@ return (
 
     </div>
 
-    {/* Submission success popup */}
+    
     {showPopup && (
       <div className="fixed inset-0 flex items-center justify-center z-50">
         <div className="absolute inset-0 bg-black/50"></div>
@@ -177,7 +177,7 @@ return (
       </div>
     )}
 
-    {/* Login prompt popup */}
+    
     {showLoginPrompt && (
       <div className="fixed inset-0 flex items-center justify-center z-50">
         <div className="absolute inset-0 bg-black/50"></div>

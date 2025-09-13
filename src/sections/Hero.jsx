@@ -132,7 +132,7 @@ export const HeroSection = ({ show }) => {
 
   return (
     <section ref={sectionRef} id="hero" className="relative z-10">
-      {/* Mobile background image */}
+      
       <img
         ref={illoRef}
         src={hero_img}
@@ -207,7 +207,7 @@ export const HeroSection = ({ show }) => {
             </div>
           </header>
 
-          {/* Desktop image on the right */}
+          
           <div className="relative max-w-[1000px] h-auto mt-20 flex justify-center items-center">
             <img
               ref={illoRef}
@@ -241,16 +241,16 @@ export const Hero = () => {
   return (
     <div className="relative w-full overflow-hidden">
 
-      {/* Welcome animation */}
+      
       <div className={`${showContent ? "opacity-0" : "opacity-100"} transition-opacity duration-700`}>
         <WelcomeText onComplete={() => setShowContent(true)} />
       </div>
-      {/* Rest of hero content */}
+      
       <div
         className={`transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
           }`}
       >
-        {/* Background Video */}
+        
         <HeroVideo />
       </div>
 

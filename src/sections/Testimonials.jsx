@@ -13,7 +13,6 @@ const Testimonials = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
-  // Listen to Firebase auth state
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
@@ -21,7 +20,6 @@ const Testimonials = () => {
     return unsubscribe;
   }, []);
 
-  // Submit comment
   const handleSubmit = async () => {
     if (!comment) return;
 
@@ -49,7 +47,6 @@ const Testimonials = () => {
     }
   };
 
-  // Fetch approved comments
   useEffect(() => {
     const fetchComments = async () => {
       const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
@@ -62,7 +59,6 @@ const Testimonials = () => {
     fetchComments();
   }, []);
 
-  // Sign in with Google
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -75,7 +71,6 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="relative flex-center section-padding overflow-hidden">
-      {/* 🔹 Background video */}
       <video
         autoPlay
         muted
@@ -86,17 +81,14 @@ const Testimonials = () => {
         <source src={encryption} type="video/webm" />
       </video>
 
-      {/* 🔹 Optional gradient overlay for readability */}
       <div className="absolute inset-0 bg-[#040015]/40 z-0"></div>
 
-      {/* 🔹 Main Content */}
       <div className="relative z-10 w-full h-full md:px-10 px-5">
         <TitleHeader
           title="What People Say About Me"
           sub="Peer's Feedback Highlights"
         />
 
-        {/* Comment box */}
         <div className="my-4 flex flex-col gap-2 items-center">
           <textarea
             className="p-2 rounded bg-gray-800/70 backdrop-blur text-white w-full max-w-md"
@@ -109,9 +101,7 @@ const Testimonials = () => {
           </button>
         </div>
 
-{/* Testimonials */}
 <div className="mt-16">
-  {/* ✅ Mobile Layout (2x2 scrollable grid) */}
   <div className="grid grid-cols-2 overflow-x-auto gap-4 snap-x snap-mandatory md:hidden">
     {approvedComments.map((testimonial, index) => (
       <div
@@ -119,7 +109,7 @@ const Testimonials = () => {
         className="snap-center flex-shrink-0 w-[110vw] grid grid-cols-2 gap-4"
       >
         {approvedComments
-          .slice(index * 4, index * 4 + 4) // take 4 testimonials at a time
+          .slice(index * 4, index * 4 + 4)
           .map((t, i) => (
             <GlowCard card={t} key={i} index={i}>
               <div className="flex items-center gap-3">
@@ -134,7 +124,6 @@ const Testimonials = () => {
     ))}
   </div>
 
-  {/* ✅ Desktop Layout (columns) */}
   <div className="hidden md:block lg:columns-3 md:columns-2 columns-1">
     {approvedComments.map((testimonial, index) => (
       <GlowCard card={testimonial} key={index} index={index}>
@@ -156,7 +145,6 @@ const Testimonials = () => {
 
       </div>
 
-      {/* 🔹 Popup */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute inset-0 bg-black/50"></div>

@@ -102,7 +102,7 @@ const Experience = () => {
           <div className="relative z-50 xl:space-y-32 space-y-10">
             {expCards.map((card) => (
               <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-1/6">
+                <div className="xl:w-full">
                   <div className="flex items-start">
                     <div className="timeline-wrapper">
                       <div className="timeline" />

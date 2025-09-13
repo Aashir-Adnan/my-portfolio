@@ -31,7 +31,7 @@ const LogoShowcaseContent = () => (
 export const LogoShowcase = () => {
   return (
     <div className="relative flex flex-col h-full w-full brightness-110">
-      {/* Video Background */}
+      
       <video
         autoPlay
         muted
@@ -42,7 +42,7 @@ export const LogoShowcase = () => {
         <source src={sinkhole} type="video/webm" />
       </video>
 
-      {/* Hero Content */}
+      
       <LogoShowcaseContent />
     </div>
   );

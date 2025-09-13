@@ -123,7 +123,7 @@ const AnimatedCounter = () => {
               0 {item.suffix}
             </div>
 
-            {/* Label wrapper with fixed height */}
+            
             <div className="relative w-full h-10 flex items-center justify-center overflow-hidden">
               <div className="counter-label absolute text-white-50 text-sm text-center px-2">
                 {item.label}
