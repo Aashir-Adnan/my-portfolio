@@ -54,6 +54,7 @@ export const HeroVideo = () => {
       muted
       loop
       playsInline
+      preload="metadata"
       className="
         absolute 
         rotate-180 

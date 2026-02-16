@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { auth, provider, db } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { collection, addDoc, query, getDocs, orderBy } from "firebase/firestore";
@@ -12,6 +12,19 @@ const Testimonials = () => {
   const [approvedComments, setApprovedComments] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const [videoInView, setVideoInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setVideoInView(e.isIntersecting),
+      { rootMargin: "80px", threshold: 0.01 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -70,17 +83,19 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="relative flex-center section-padding overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 brightness-90"
-      >
-        <source src={encryption} type="video/webm" />
-      </video>
-
+    <section ref={sectionRef} id="testimonials" className="relative flex-center section-padding overflow-hidden">
+      {videoInView && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover z-0 brightness-90"
+        >
+          <source src={encryption} type="video/webm" />
+        </video>
+      )}
       <div className="absolute inset-0 bg-[#040015]/40 z-0"></div>
 
       <div className="relative z-10 w-full h-full md:px-10 px-5">

@@ -8,11 +8,24 @@ import ContactExperience from "../components/models/contact/ContactExperience";
 
 const Contact = () => {
   const formRef = useRef(null);
+  const sectionRef = useRef(null);
   const [user, setUser] = useState(auth.currentUser || null);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [showPopup, setShowPopup] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [show3D, setShow3D] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setShow3D(e.isIntersecting),
+      { rootMargin: "100px", threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // Listen to login/logout to update form fields
   useEffect(() => {
@@ -81,7 +94,7 @@ const Contact = () => {
   };
 
 return (
-  <section id="contact" className="flex-center section-padding">
+  <section ref={sectionRef} id="contact" className="flex-center section-padding">
     <div className="w-full h-full md:px-10 px-5 z-[1]">
       <TitleHeader
         title="Get in Touch – Let’s Connect"
@@ -152,8 +165,12 @@ return (
 
   
   <div className="min-h-96">
-    <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-      <ContactExperience />
+    <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden min-h-[24rem] flex items-center justify-center">
+      {show3D ? (
+        <ContactExperience />
+      ) : (
+        <span className="text-white/60 text-sm">Loading…</span>
+      )}
     </div>
   </div>
 </div>

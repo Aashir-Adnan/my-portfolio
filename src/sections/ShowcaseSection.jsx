@@ -100,10 +100,16 @@
     }, [showDosbox, dosboxLoaded]);
 
     useEffect(() => {
+      let ticking = false;
       const moveHandler = (e) => {
-        setCursorPos({ x: e.clientX, y: e.clientY });
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          setCursorPos({ x: e.clientX, y: e.clientY });
+          ticking = false;
+        });
       };
-      window.addEventListener("mousemove", moveHandler);
+      window.addEventListener("mousemove", moveHandler, { passive: true });
       return () => window.removeEventListener("mousemove", moveHandler);
     }, []);
 
