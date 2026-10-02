@@ -2,7 +2,7 @@ import { useState, lazy, Suspense } from "react";
 
 import Navbar from "./components/NavBar";
 import Hero from "./sections/Hero";
-import StarsCanvas from "./components/models/stars/stars";
+// import StarsCanvas from "./components/models/stars/stars";
 
 const LogoShowcase = lazy(() => import("./sections/LogoShowcase"));
 const FeatureCards = lazy(() => import("./sections/FeatureCards"));
@@ -22,7 +22,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   return (
     <>
-      <StarsCanvas />
+      {/* <StarsCanvas /> */}
       <Navbar user={user} />
       <Hero />
       <Suspense fallback={<SectionFallback />}>

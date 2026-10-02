@@ -132,10 +132,12 @@
 
       \resumeSubheading
         {GranjurTech}{Sept 2024 -- Present}
-        {Full-Stack Developer \textbar\ Framework Architect \textbar\ Project Manager}{}
+        {Full-Stack Developer \textbar\ Framework Architect \textbar\ Project Manager \textbar\ Backend Lead}{}
         \resumeItemListStart
           \resumeItem{\textit{UBS Framework Architect:} Designed and led the in-house Unified Business Solution framework; \textbf{optimized parsing and generation scripts}, implemented \textbf{dynamic file creation and retrieval}, and built \textbf{extensive verification and authentication}. Led \textbf{cyber security and encryption} work; deployed services with \textbf{Nginx and Docker}; created \textbf{CI/CD pipelines}. \textbf{Optimized API response times to sub-200\,ms}; implemented \textbf{automated API generation}. Documented project management with \textbf{version logs and DB management}. Migrated a legacy server system onto UBS}
           \resumeItem{\textit{Custom SaaS (CSaaS) Project Manager:} Managed end-to-end delivery of custom SaaS solutions---requirements, architecture, implementation, and deployment. Coordinated stakeholders and developers; shipped features on schedule with CI/CD and Docker-based deployments}
+          \resumeItem{\textit{HMS Backend Lead:} Led backend architecture for the Hotel Management System integrated with \textbf{Opera PMS} on on-premises infrastructure; drove a flexible data model supporting feature expansion with \textbf{zero database schema changes}}
+          \resumeItem{\textit{QF Database Design (Database and Backend Lead):} Redesigned an international Islamic educational platform data layer into four major clusters---\textbf{Content, Delivery, Response, and Configs}---to remap legacy structures, reduce onboarding overhead for new developers, and preserve scalability while supporting new features with \textbf{zero schema changes}}
           \resumeItem{\textit{In-House HRM Project Manager:} Led the Human Resource Management project from conception to delivery: requirements, database schemas, API contracts, wireframes, and documentation. Drove version logs and DB management practices for the project}
           \resumeItem{\textit{In-House Dev Tools Project Manager:} Owned planning and rollout of internal developer tooling. Built collection and reporting tools that aggregate data on developers and their commits to features across ongoing projects; documented progress via version logs for project management}
           \resumeItem{Developed bots and automation scripts for internal processes (CI/CD, deployments, notifications). Technical support and collaboration across engineering teams}
@@ -175,26 +177,44 @@
         \resumeProjectHeading
             {\textit{Custom SaaS (CSaaS)}}{}
             \resumeItemListStart
-              \resumeItem{\textbf{Visual database interface}: users configure a personal SaaS via \textbf{chatbot} and \textbf{manual edits} (schema and logic). \textbf{Auto-hosted and deployed} with \textbf{analytics}}
-              \resumeItem{Enables non-technical users to ship and monitor custom SaaS without writing backend code}
+              \resumeItem{Built an end-to-end platform that generates the \textbf{database, backend, and frontend} from a project-specific database template completed through a guided chatbot flow}
+              \resumeItem{Included production deployment with advanced \textbf{cybersecurity controls} and \textbf{encryption}; successfully delivered \textbf{4 real client projects} on top of the system}
             \resumeItemListEnd
         \end{samepage}
 
         \begin{samepage}
         \resumeProjectHeading
-            {\textit{In-House HRM System}}{}
+            {\textit{Hotel Management System (HMS)}}{}
             \resumeItemListStart
-              \resumeItem{Internal HRM app: defined schemas, REST APIs, wireframes; versioned logs and DB for audit and workflows}
-              \resumeItem{Single source of truth for HR data and process documentation}
+              \resumeItem{Developed a hotel management system integrated with \textbf{Opera PMS} on an on-premises network for operational compatibility with existing hospitality workflows}
+              \resumeItem{Designed an extensible data model to absorb new modules and requirements with \textbf{zero database schema changes}, enabling long-term feature growth}
             \resumeItemListEnd
         \end{samepage}
 
         \begin{samepage}
         \resumeProjectHeading
-            {\textit{In-House Dev Tools}}{}
+            {\textit{Meeting-to-Development Automation Tool}}{}
             \resumeItemListStart
-              \resumeItem{Dashboard and reports: developer activity and \textbf{commit-to-feature} mapping across active repos}
-              \resumeItem{Feeds visibility and version logs for project managers without scraping repos manually}
+              \resumeItem{Built a meeting-driven development pipeline: records supervisor/developer discussions, transcribes audio, and converts action items into project-specific GitHub issues automatically}
+              \resumeItem{Automates implementation by routing issues to Claude Code, generating tested pull requests with QA checks in minutes via scheduled cron jobs}
+            \resumeItemListEnd
+        \end{samepage}
+
+        \begin{samepage}
+        \resumeProjectHeading
+            {\textit{Discord Documentation \& Project Ops Bot}}{}
+            \resumeItemListStart
+              \resumeItem{Built a Discord bot to maintain engineering documentation and live project details directly from team workflows}
+              \resumeItem{Integrated with \textbf{GitHub} and \textbf{ClickUp} to sync updates, surface status context, and reduce manual project tracking}
+            \resumeItemListEnd
+        \end{samepage}
+
+        \begin{samepage}
+        \resumeProjectHeading
+            {\textit{FastBit}}{}
+            \resumeItemListStart
+              \resumeItem{Built a messaging application that communicates over \textbf{Bluetooth} instead of mobile data or Wi-Fi for local-first connectivity}
+              \resumeItem{Implemented a hive-mind/mesh-network style message relay with maintained \textbf{end-to-end encryption} for secure peer-to-peer communication}
             \resumeItemListEnd
         \end{samepage}
 
@@ -207,13 +227,25 @@
             \resumeItemListEnd
         \end{samepage}
 
+        \begin{samepage}
+            \resumeProjectHeading
+            {\textit{IO --- Local-First AI Assistant}}{}
+            \resumeItemListStart
+                \resumeItem{Built a \textbf{local-first, single-user AI assistant} running entirely on-device with \textbf{PostgreSQL and Ollama}; an opt-in Anthropic backend is the only sanctioned network call}
+                \resumeItem{Designed a deterministic architecture where the LLM handles \textbf{routing, extraction, planning, and phrasing}, while \textbf{Python controls SQL, dates, entity identity, and execution}; persists open-ended records alongside people, places, items, and occasions}
+                \resumeItem{Implemented \textbf{contextual file indexing} for documents, images, and videos, attaching people, places, timestamps, and content metadata to enable long-term retrieval without manually searching thousands of files}
+                \resumeItem{Completed extraction/query pipelines, \textbf{FastAPI service}, PyWebView desktop application, \textbf{Whisper/Piper voice I/O}, media captioning, file indexing, and self-bootstrapping packaged Windows executable; developing a frameless translucent \textbf{Win11 glass UI} with orb, clock, and ask bar}
+            \resumeItemListEnd
+        \end{samepage}
+
+
       \resumeSubHeadingListEnd
 
 
 
   \section{EDUCATION}
     \resumeSubHeadingListStart
-      \item \textit{Bachelor of Science in Computer Science}, FAST NUCES (Expected June 2026)
+      \item \textit{Bachelor of Science in Computer Science}, FAST NUCES (2022 - 2026)
     \resumeSubHeadingListEnd
 
 
