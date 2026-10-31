@@ -9,7 +9,7 @@ import ContactExperience from "../components/models/contact/ContactExperience";
 const Contact = () => {
   const formRef = useRef(null);
   const sectionRef = useRef(null);
-  const [user, setUser] = useState(auth.currentUser || null);
+  const [user, setUser] = useState(auth?.currentUser ?? null);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [showPopup, setShowPopup] = useState(false);
@@ -29,6 +29,7 @@ const Contact = () => {
 
   // Listen to login/logout to update form fields
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
       if (currentUser) {

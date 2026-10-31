@@ -1,4 +1,6 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { useState, useEffect, useRef } from "react";
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
@@ -6,21 +8,23 @@ import { words, words2 } from "../constants";
 import hero_img from "/images/hero-bg.svg";
 import blackhole from "/videos/blackhole.webm";
 
+gsap.registerPlugin(ScrollTrigger);
+
 
 /* -------------------- Welcome Text -------------------- */
 export const WelcomeText = ({ onComplete }) => {
   const welcomeRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 1, onComplete });
+    const tl = gsap.timeline({ delay: 0.2, onComplete });
 
     tl.fromTo(
       welcomeRef.current,
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
     ).to(
       welcomeRef.current,
-      { opacity: 0, y: -50, duration: 1, ease: "power2.in", delay: 1 }
+      { opacity: 0, y: -50, duration: 0.5, ease: "power2.in", delay: 0.4 }
     );
   }, [onComplete]);
 
@@ -100,13 +104,13 @@ export const HeroSection = ({ show }) => {
     const container = sectionRef.current;
     if (!container) return;
 
-    const tl = gsap.timeline({ delay: 1 });
+    const tl = gsap.timeline({ delay: 0.2 });
 
     // Headings
     tl.fromTo(
       container.querySelectorAll(".hero-text h1"),
       { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.5, duration: 1, ease: "power2.inOut" }
+      { y: 0, opacity: 1, stagger: 0.2, duration: 0.7, ease: "power2.inOut" }
     )
 
       // Animate paragraph, image, and button **in parallel**
@@ -114,7 +118,7 @@ export const HeroSection = ({ show }) => {
         container.querySelector(".hero-layout p"),
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-        "+=2" // wait 2s after headings end
+        "-=0.3" // overlap the end of the headings
       )
       .fromTo(
         illoRef.current,
@@ -190,19 +194,17 @@ export const HeroSection = ({ show }) => {
               </div>
 
               <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-                Hi, I’m Aashir, a Full-stack developer driven by a passion <br />
-                to overcome challenges and create innovative solutions. <br />
-                With a focus on delivering results, I transform concepts into
-                reality, <br />
-                ensuring your vision is brought to life with precision and
-                creativity.
+                Hi, I’m Aashir, a full-stack developer at GranjurTech. <br />
+                I lead backends for production systems, from a hotel platform on Opera PMS <br />
+                to the framework our team builds every product on, and I automate <br />
+                the busywork, like turning meeting notes into merged pull requests.
               </p>
 
               <div ref={btnWrapRef} className="opacity-0">
                 <Button
                   text="See My Work"
                   className="md:w-80 md:h-16 w-60 h-12"
-                  id="counter"
+                  id="work"
                 />
               </div>
             </div>
@@ -238,6 +240,23 @@ export const HeroCounters = () => {
 /* -------------------- Main Hero -------------------- */
 export const Hero = () => {
   const [showContent, setShowContent] = useState(false);
+  const bgRef = useRef(null);
+
+  // Parallax: the blackhole layer drifts down as you scroll, so it travels at
+  // ~0.6x the speed of the text in front of it.
+  useGSAP(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.to(bgRef.current, {
+      yPercent: 80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: bgRef.current.parentElement,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  });
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -247,11 +266,13 @@ export const Hero = () => {
         <WelcomeText onComplete={() => setShowContent(true)} />
       </div>
       
+      {/* absolute inset-0 gives the video the same box it had before, so the
+          transform moves the whole layer without changing where the video sits */}
       <div
-        className={`transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
+        ref={bgRef}
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
           }`}
       >
-        
         <HeroVideo />
       </div>
 

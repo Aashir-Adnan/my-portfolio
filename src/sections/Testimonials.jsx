@@ -27,6 +27,7 @@ const Testimonials = () => {
   }, []);
 
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
     });
@@ -61,6 +62,7 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
+    if (!db) return;
     const fetchComments = async () => {
       const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
       const snapshot = await getDocs(q);

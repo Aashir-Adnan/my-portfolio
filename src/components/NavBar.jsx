@@ -5,7 +5,7 @@ import { signInWithPopup, signOut } from "firebase/auth";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState(auth?.currentUser ?? null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
@@ -26,6 +26,7 @@ const NavBar = () => {
 
   // Auth listener
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
     });

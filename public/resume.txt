@@ -11,6 +11,8 @@ EXPERIENCE
 ----------
 Full-Stack Developer @ GranjurTech (Sept 2024 – Present)
 - Developed and maintained the UBS framework; enhanced performance and scalability.
+- Backend Lead for HMS: led backend architecture for a Hotel Management System integrated with Opera PMS on an on-premises network, supporting feature growth with zero schema changes.
+- Database and Backend Lead for QF Database Design: remapped a client platform database into four clusters (Content, Delivery, Response, Configs) to reduce developer overhead and maintain scalability with zero schema changes.
 - Created bots and deployed scripts for internal processes.
 - Collaborated with cross-functional teams on technical support.
 
@@ -18,8 +20,28 @@ Back-end Dev Intern @ GranjurTech (June 2024 – Sept 2024)
 - Created wireframes, database schemas, and API documentation for an HR Management System.
 - Laid groundwork for the UBS framework backend.
 
+PROJECTS
+--------
+CSAAS
+- Built an end-to-end system that generates backend, database, and frontend layers from a project-specific database template filled through a chatbot workflow.
+- Added deployment-ready cybersecurity and encryption controls; delivered 4 real client projects using the platform.
+
+HMS
+- Built a Hotel Management System integrated with Opera PMS on an on-premises network.
+- Designed a highly flexible database architecture that supports new features with zero database schema changes.
+
+Meeting-to-Development Automation Tool
+- Records developer/supervisor meetings, transcribes discussions, and converts project tasks into GitHub issues automatically.
+- Uses Claude Code to implement tasks and produce pull requests with tests and QA checks within minutes through a cron-driven pipeline.
+
+Discord Documentation and Project Ops Bot
+- Built a Discord bot for maintaining technical documentation and project details across teams.
+- Integrated with GitHub and ClickUp to sync task and project status updates automatically.
+
+FastBit
+- Built a messaging app that used Bluetooth instead of mobile data or Wi-Fi for communication.
+- Implemented a hive-mind/mesh-style network approach while maintaining end-to-end encryption.
+
 SKILLS
 ------
 React, Node.js, Python, Three.js, PostgreSQL, MySQL, MongoDB, Git
-
-Replace this file with your own resume (resume.txt or resume.pdf in the public folder).

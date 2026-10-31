@@ -4,9 +4,8 @@
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
 }
-html {
-  scroll-behavior: smooth;
-}
+/* No `scroll-behavior: smooth` here: it animates each of smoothscroll.js's per-frame
+   scrollBy calls and makes wheel scrolling judder. Put it back if smoothscroll.js goes. */
 body {
   width: 100dvw;
   overflow-x: hidden;

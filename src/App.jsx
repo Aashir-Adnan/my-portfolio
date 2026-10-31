@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 
-import Navbar from "./components/NavBar";
+// import Navbar from "./components/NavBar"; // top bar hidden for now
 import Hero from "./sections/Hero";
 // import StarsCanvas from "./components/models/stars/stars";
 
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <>
       {/* <StarsCanvas /> */}
-      <Navbar user={user} />
+      {/* <Navbar user={user} /> */}
       <Hero />
       <Suspense fallback={<SectionFallback />}>
         <LogoShowcase />
@@ -35,10 +35,10 @@ const App = () => {
         <Experience />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
-        <TechStack />
+        <ShowcaseSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
-        <ShowcaseSection />
+        <TechStack />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <Resume />
