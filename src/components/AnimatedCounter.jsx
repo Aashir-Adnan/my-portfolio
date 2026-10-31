@@ -107,25 +107,25 @@ const AnimatedCounter = () => {
       <div
         className="
           mx-auto grid 
-          grid-cols-1
+          grid-cols-2
           md:grid-cols-4
-          gap-6 overflow-visible
+          gap-3 md:gap-6 overflow-visible
         "
       >
         {counterItems.map((item, index) => (
           <div
             key={index}
             ref={(el) => el && (countersRef.current[index] = el)}
-            className="bg-zinc-900 rounded-lg min-w-[160px] p-6 flex flex-col items-center justify-center 
+            className="bg-zinc-900 rounded-lg p-4 md:p-6 flex flex-col items-center justify-center 
              transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
           >
-            <div className="counter-number text-white-50 text-2xl font-bold mb-2">
+            <div className="counter-number text-white-50 text-xl md:text-2xl font-bold mb-1 md:mb-2">
               0 {item.suffix}
             </div>
 
             
-            <div className="relative w-full h-10 flex items-center justify-center overflow-hidden">
-              <div className="counter-label absolute text-white-50 text-sm text-center px-2">
+            <div className="relative w-full h-12 md:h-10 flex items-center justify-center overflow-hidden">
+              <div className="counter-label absolute text-white-50 text-xs md:text-sm text-center md:px-2">
                 {item.label}
               </div>
             </div>

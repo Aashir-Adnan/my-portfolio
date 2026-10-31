@@ -236,7 +236,7 @@ section {
   }
 
   .marquee-item {
-    @apply md:w-40 w-32;
+    @apply md:w-40 w-20;
   }
 
   .timeline-wrapper {
@@ -268,7 +268,7 @@ section {
     @apply flex bg-black flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
 
     & p {
-      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
+      @apply text-sm md:text-lg 2xl:text-2xl pb-3 md:pb-5 xl:pb-0 font-semibold text-white-50 text-center;
     }
   }
 
@@ -277,7 +277,7 @@ section {
   }
 
   .tech-icon-wrapper {
-    @apply flex justify-center items-center w-52 h-60 relative transform hover:scale-115 transition-transform duration-500;
+    @apply flex justify-center items-center w-full h-40 md:w-52 md:h-60 relative transform hover:scale-115 transition-transform duration-500;
   }
 
   form {

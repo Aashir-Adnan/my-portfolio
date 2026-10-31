@@ -98,7 +98,7 @@ const Experience = () => {
           title="Professional Work Experience"
           sub="My Career Overview"
         />
-        <div className="mt-32 relative">
+        <div className="md:mt-32 mt-12 relative">
           <div className="relative z-50 xl:space-y-32 space-y-10">
             {expCards.map((card) => (
               <div key={card.title} className="exp-card-wrapper">
@@ -123,14 +123,14 @@ const Experience = () => {
                         </a>
                       </div>
                       <div>
-                        <h1 className="font-semibold text-2xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
+                        <h1 className="font-semibold text-xl md:text-2xl">{card.title}</h1>
+                        <p className="md:my-5 my-2 text-sm md:text-base text-white-50">
                           🗓️&nbsp;{card.date}
                         </p>
                         <p className="text-[#839CB5] italic">
                           Responsibilities
                         </p>
-                        <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
+                        <ul className="list-disc ms-5 md:mt-5 mt-3 flex flex-col md:gap-5 gap-3 text-sm md:text-base text-white-50">
                           {card.responsibilities.map(
                             (responsibility, index) => (
                               <li key={index} className="text-sl">

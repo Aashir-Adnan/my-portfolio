@@ -194,9 +194,9 @@ export const HeroSection = ({ show }) => {
               </div>
 
               <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-                Hi, I’m Aashir, a full-stack developer at GranjurTech. <br />
-                I lead backends for production systems, from a hotel platform on Opera PMS <br />
-                to the framework our team builds every product on, and I automate <br />
+                Hi, I’m Aashir, a full-stack developer at GranjurTech. <br className="hidden md:block" />
+                I lead backends for production systems, from a hotel platform on Opera PMS <br className="hidden md:block" />
+                to the framework our team builds every product on, and I automate <br className="hidden md:block" />
                 the busywork, like turning meeting notes into merged pull requests.
               </p>
 

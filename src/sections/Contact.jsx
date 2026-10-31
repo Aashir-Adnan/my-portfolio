@@ -105,7 +105,7 @@ return (
       
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-16">
   
-  <div className="flex-center card-border rounded-xl p-10">
+  <div className="flex-center card-border rounded-xl p-5 md:p-10">
     <form
       ref={formRef}
       onSubmit={handleSubmit}

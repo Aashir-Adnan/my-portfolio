@@ -33,7 +33,7 @@ function LazyTechCard({ model, colSpanClass }) {
       className={`card-border tech-card overflow-hidden group rounded-lg bg-black w-full flex justify-center ${colSpanClass}`}
     >
       <div className="tech-card-content">
-        <div className="tech-icon-wrapper min-h-[14rem] flex items-center justify-center">
+        <div className="tech-icon-wrapper md:min-h-[14rem] flex items-center justify-center">
           {inView ? (
             <TechIconCardExperience model={model} />
           ) : (
@@ -66,12 +66,12 @@ const TechStack = () => {
 
   return (
     <div id="skills" className="flex-center section-padding overflow-hidden">
-      <div className="w-full h-full md:px-10 px-5 z-[1]">
+      <div className="w-full h-full md:px-10 z-[1]">
         <TitleHeader
           title="How I Can Contribute & My Key Skills"
           sub="What I Bring to the Table"
         />
-        <div className="grid grid-cols-2 gap-6 justify-items-center mt-10 sm:grid-cols-2 md:flex md:flex-row md:flex-nowrap md:gap-4 md:overflow-x-auto">
+        <div className="grid grid-cols-2 gap-3 md:gap-6 justify-items-center mt-10 md:flex md:flex-row md:flex-nowrap md:gap-4 md:overflow-x-auto">
           {techStackIcons.map((techStackIcon, idx) => (
             <LazyTechCard
               key={techStackIcon.name}

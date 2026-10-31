@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ubsStack = ["Node.js", "Express", "PostgreSQL", "MySQL", "AWS S3", "React"];
 
-const Tags = ({ items }) => (
-  <div className="flex flex-wrap gap-2">
+const Tags = ({ items, className = "" }) => (
+  <div className={`flex flex-wrap gap-2 ${className}`}>
     {items.map((t) => (
       <span key={t} className="text-xs md:text-sm px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white-50">
         {t}
@@ -19,8 +19,8 @@ const Tags = ({ items }) => (
   </div>
 );
 
-const Links = ({ project, onPlay }) => (
-  <div className="flex flex-wrap gap-4 text-sm">
+const Links = ({ project, onPlay, className = "" }) => (
+  <div className={`flex flex-wrap gap-x-4 gap-y-1 text-xs md:text-sm ${className}`}>
     {project.github && (
       <a href={project.github} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-blue-400 hover:underline">
         GitHub ↗
@@ -74,22 +74,22 @@ const AppShowcase = () => {
   }, [showDosbox]);
 
   return (
-    <section id="work" ref={sectionRef} className="relative z-2 w-full px-5 md:px-20 py-10 md:py-20 mt-10">
+    <section id="work" ref={sectionRef} className="relative z-2 w-full px-4 md:px-20 py-10 md:py-20 mt-10">
       <TitleHeader title="Selected Work" sub="Projects & Contributions" />
 
       {/* Featured */}
-      <div className="project-tile card-border rounded-2xl mt-12 grid md:grid-cols-2 gap-8 p-6 md:p-10 items-center">
-        <div className="bg-black/50 rounded-xl flex justify-center items-center h-64 md:h-80">
+      <div className="project-tile card-border rounded-2xl md:mt-12 mt-8 grid md:grid-cols-2 md:gap-8 gap-4 p-4 md:p-10 items-center">
+        <div className="bg-black/50 rounded-xl flex justify-center items-center h-40 md:h-80">
           <img src="/images/pern.jpeg" alt="UBS framework stack" loading="lazy" className="h-3/4 object-contain brightness-75" />
         </div>
-        <div className="flex flex-col gap-4">
-          <span className="text-blue-400 text-sm uppercase tracking-widest">Flagship · GranjurTech</span>
-          <h2 className="text-white text-3xl md:text-4xl font-semibold">UBS Framework</h2>
-          <p className="text-white-50 md:text-lg">
+        <div className="flex flex-col md:gap-4 gap-3">
+          <span className="text-blue-400 text-xs md:text-sm uppercase tracking-widest">Flagship · GranjurTech</span>
+          <h2 className="text-white text-2xl md:text-4xl font-semibold">UBS Framework</h2>
+          <p className="text-white-50 text-sm md:text-lg">
             The shared backend framework behind GranjurTech client products such as HMS.
             Config-driven APIs with auth, permission checks and parameter validation built in, so teams write business logic instead of boilerplate.
           </p>
-          <ul className="text-white-50 list-disc pl-5 space-y-1">
+          <ul className="text-white-50 text-sm md:text-base list-disc pl-5 space-y-1">
             <li>Tier-2 encryption, token auth and role-based permissions</li>
             <li>Local and AWS S3 file storage, email and notifications</li>
             <li>Lead contributor: 220+ commits on the core repo</li>
@@ -99,12 +99,12 @@ const AppShowcase = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid gap-6 mt-10 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6 md:mt-10 mt-6">
         {projects.map((p) => (
           <article
             key={p.title}
             onClick={() => setSelected(p)}
-            className="project-tile card-border rounded-2xl overflow-hidden cursor-pointer group flex flex-col transition-transform duration-300 hover:-translate-y-1"
+            className="project-tile card-border rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group flex flex-col transition-transform duration-300 hover:-translate-y-1"
           >
             <div className="aspect-video bg-black/60 overflow-hidden">
               {p.img ? (
@@ -113,12 +113,13 @@ const AppShowcase = () => {
                 <div className="w-full h-full flex-center text-white-50 text-xl">{p.title}</div>
               )}
             </div>
-            <div className="p-5 flex flex-col gap-3 flex-1">
-              <span className="text-blue-400 text-xs uppercase tracking-widest">{p.role}</span>
-              <h3 className="text-white text-xl font-semibold">{p.title}</h3>
-              <p className="text-white-50 text-sm md:text-base flex-1">{p.tagline}</p>
-              <Tags items={p.stack} />
-              <Links project={p} onPlay={() => setShowDosbox(true)} />
+            <div className="p-3 md:p-5 flex flex-col gap-1.5 md:gap-3 flex-1">
+              <span className="text-blue-400 text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest line-clamp-1">{p.role}</span>
+              <h3 className="text-white text-sm md:text-xl font-semibold leading-snug">{p.title}</h3>
+              <p className="text-white-50 text-xs md:text-base flex-1 line-clamp-3 md:line-clamp-none">{p.tagline}</p>
+              {/* Tags and links stay in the modal on phones so cards fit two across */}
+              <Tags items={p.stack} className="hidden md:flex" />
+              <Links project={p} onPlay={() => setShowDosbox(true)} className="hidden md:flex" />
             </div>
           </article>
         ))}
@@ -138,10 +139,10 @@ const AppShowcase = () => {
               ✕
             </button>
             {selected.img && <img src={selected.img} alt={`${selected.title} preview`} className="w-full aspect-video object-cover" />}
-            <div className="p-6 flex flex-col gap-4">
+            <div className="p-4 md:p-6 flex flex-col gap-4">
               <span className="text-blue-400 text-xs uppercase tracking-widest">{selected.role}</span>
-              <h2 className="text-2xl font-semibold text-white">{selected.title}</h2>
-              <ul className="text-white-50 list-disc pl-5 space-y-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-white pr-6">{selected.title}</h2>
+              <ul className="text-white-50 text-sm md:text-base list-disc pl-5 space-y-2">
                 {selected.points.map((pt) => <li key={pt}>{pt}</li>)}
               </ul>
               <Tags items={selected.stack} />
